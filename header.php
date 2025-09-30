@@ -1,34 +1,54 @@
-here<?php
-/**
- * The Header template for Pridama WooCommerce Theme
- */
-?><!DOCTYPE html>
+<!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php wp_head(); ?>
+<meta charset="<?php bloginfo('charset'); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <header class="site-header">
-    <div class="hamburger" onclick="document.querySelector('.drawer-menu').classList.toggle('active')">&#9776;</div>
-    <div class="logo">
-        <a href="<?php echo esc_url(home_url('/')); ?>">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-dark.png" alt="<?php bloginfo('name'); ?>">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="icon-btn hamburger" id="hamburgerBtn" aria-label="Open menu">
+        <!-- simple hamburger -->
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect y="0" width="20" height="2" rx="1" fill="currentColor"/><rect y="6" width="20" height="2" rx="1" fill="currentColor"/><rect y="12" width="20" height="2" rx="1" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <div class="header-center">
+      <div class="logo"><a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a></div>
+    </div>
+
+    <div class="header-right">
+      <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+        <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
+        <input type="hidden" name="post_type" value="product" />
+        <button class="icon-btn" type="submit" aria-label="Search">🔍</button>
+      </form>
+
+      <div class="mini-cart" id="miniCart">
+        <a href="<?php echo wc_get_cart_url(); ?>" class="icon-btn" aria-label="View cart">
+          🛒
+          <span class="cart-count" id="cartCount"><?php echo (int)(function_exists('WC')? WC()->cart->get_cart_contents_count():0); ?></span>
         </a>
+      </div>
     </div>
-    <div class="search">
-        <?php get_search_form(); ?>
-    </div>
+  </div>
 </header>
 
-<nav class="drawer-menu">
+<!-- Drawer -->
+<div class="drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-content">
     <?php
-        wp_nav_menu(array(
-            'theme_location' => 'primary',
-            'container'      => false,
-            'menu_class'     => 'drawer-menu-list',
-        ));
+      if ( has_nav_menu('primary') ){
+        wp_nav_menu(array('theme_location'=>'primary','container'=>false));
+      } else {
+        echo '<p><a href="'.esc_url(home_url('/')).'">Home</a></p>';
+      }
     ?>
-    <div class="drawer-footer">&copy; <?php echo date('Y'); ?> Pridama.com</div>
-</nav>
+  </div>
+  <div class="drawer-footer">© <?php echo date('Y'); ?> pridama.com</div>
+</div>
+<div class="overlay" id="drawerOverlay"></div>
+
+<main class="main" id="site-main">
