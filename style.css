@@ -104,54 +104,54 @@ primary);color:white;font-weight:600}
 
 
 
-  /* Header layout */
+/* Desktop stays as is */
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* spacing between hamburger and logo */
-}
-
-.header-left .logo img {
-  height: 40px;
-  width: auto;
-}
-
-/* Right side (search + cart) */
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.search-form {
-  display: flex;
-  align-items: center;
-}
-.search-form input[type="search"] {
-  padding: 5px 8px;
-  font-size: 14px;
-}
-.search-form button {
-  margin-left: 5px;
-}
-
-/* Responsive tweaks */
+/* Mobile adjustments */
 @media (max-width: 768px) {
-  .search-form input[type="search"] {
-    width: 140px;
+  .header-inner {
+    justify-content: flex-start; /* push items closer */
+    gap: 10px; /* add small spacing */
   }
-}
 
-/* Hide search on mobile */
-@media (max-width: 768px) {
-  .desktop-only {
+  /* Left align hamburger + logo + cart */
+  .header-left,
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-right {
+    margin-left: auto; /* cart shifts to far right */
+  }
+
+  /* Logo smaller on mobile */
+  .logo img {
+    max-height: 32px;
+    width: auto;
+  }
+
+  /* Hide search completely */
+  .search-form {
     display: none !important;
+  }
+
+  /* Cart tighter */
+  .mini-cart .icon-btn {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .cart-count {
+    font-size: 12px;
+    top: -5px;
+    right: -8px;
+    position: relative;
   }
 }
