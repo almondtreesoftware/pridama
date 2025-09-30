@@ -179,3 +179,89 @@ primary);color:white;font-weight:600}
     background-size: contain; /* image shrinks to fit mobile */
   }
 }
+
+/* Footer Styling */
+.site-footer {
+  margin-top: 40px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-top {
+  background: #f8f8f8;
+  padding: 40px 20px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+/* Logo */
+.footer-logo img {
+  max-height: 50px;
+  width: auto;
+}
+
+/* Search */
+.footer-search .search-form {
+  display: flex;
+  gap: 8px;
+}
+.footer-search input[type="search"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.footer-search button {
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Menu */
+.footer-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-nav li {
+  margin-bottom: 6px;
+}
+.footer-nav a {
+  text-decoration: none;
+  color: #333;
+}
+.footer-nav a:hover {
+  color: #000;
+}
+
+/* Contact */
+.footer-contact .icon {
+  margin-right: 6px;
+}
+.footer-contact a {
+  color: #333;
+  text-decoration: none;
+}
+.footer-contact a:hover {
+  color: #000;
+}
+
+/* Lower Footer */
+.footer-bottom {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+}
+
