@@ -27,23 +27,21 @@
       </div>
     </div>
 
-    <!-- Right side: Search + Cart -->
     <div class="header-right">
-      <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
-        <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
-        <input type="hidden" name="post_type" value="product" />
-        <button class="icon-btn" type="submit" aria-label="Search">🔍</button>
-      </form>
+  <form role="search" method="get" class="search-form desktop-only" action="<?php echo esc_url(home_url('/')); ?>">
+    <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
+    <input type="hidden" name="post_type" value="product" />
+    <button class="icon-btn" type="submit" aria-label="Search">🔍</button>
+  </form>
 
-      <div class="mini-cart" id="miniCart">
-        <a href="<?php echo wc_get_cart_url(); ?>" class="icon-btn" aria-label="View cart">
-          🛒
-          <span class="cart-count" id="cartCount">
-            <?php echo (int)(function_exists('WC') ? WC()->cart->get_cart_contents_count() : 0); ?>
-          </span>
-        </a>
-      </div>
-    </div>
+  <div class="mini-cart" id="miniCart">
+    <a href="<?php echo wc_get_cart_url(); ?>" class="icon-btn" aria-label="View cart">
+      🛒
+      <span class="cart-count" id="cartCount"><?php echo (int)(function_exists('WC')? WC()->cart->get_cart_contents_count():0); ?></span>
+    </a>
+  </div>
+</div>
+
 
   </div>
 </header>
