@@ -4,6 +4,26 @@
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php wp_head(); ?>
+<style>
+  /* Hide search on mobile */
+  @media (max-width: 768px) {
+    .desktop-only {
+      display: none !important;
+    }
+  }
+
+  .logo img {
+    max-height: 40px;
+    width: auto;
+    vertical-align: middle;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* small space between hamburger and logo */
+  }
+</style>
 </head>
 <body <?php body_class(); ?>>
 <header class="site-header">
@@ -28,20 +48,19 @@
     </div>
 
     <div class="header-right">
-  <form role="search" method="get" class="search-form desktop-only" action="<?php echo esc_url(home_url('/')); ?>">
-    <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
-    <input type="hidden" name="post_type" value="product" />
-    <button class="icon-btn" type="submit" aria-label="Search">🔍</button>
-  </form>
+      <form role="search" method="get" class="search-form desktop-only" action="<?php echo esc_url(home_url('/')); ?>">
+        <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
+        <input type="hidden" name="post_type" value="product" />
+        <button class="icon-btn" type="submit" aria-label="Search">🔍</button>
+      </form>
 
-  <div class="mini-cart" id="miniCart">
-    <a href="<?php echo wc_get_cart_url(); ?>" class="icon-btn" aria-label="View cart">
-      🛒
-      <span class="cart-count" id="cartCount"><?php echo (int)(function_exists('WC')? WC()->cart->get_cart_contents_count():0); ?></span>
-    </a>
-  </div>
-</div>
-
+      <div class="mini-cart" id="miniCart">
+        <a href="<?php echo wc_get_cart_url(); ?>" class="icon-btn" aria-label="View cart">
+          🛒
+          <span class="cart-count" id="cartCount"><?php echo (int)(function_exists('WC')? WC()->cart->get_cart_contents_count():0); ?></span>
+        </a>
+      </div>
+    </div>
 
   </div>
 </header>
