@@ -149,3 +149,9 @@ primary);color:white;font-weight:600}
   }
 }
 
+/* Hide search on mobile */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
