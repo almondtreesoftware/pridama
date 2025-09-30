@@ -2,7 +2,32 @@
 /* Template Name: Front Page */
 get_header();
 ?>
+<style>
+/* Shipping Section */
+.shipping-banner {
+  background-color: #fce4f7; /* very light magenta */
+  background-image: url('<?php echo get_template_directory_uri(); ?>/assets/img/shipping-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* show full image, don't crop */
+  
+  padding: 60px 20px;
+  text-align: center;
+  color: #222; /* dark text for contrast on light bg */
+  border-radius: 10px;
+  margin: 40px auto;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shipping-banner {
+    padding: 40px 15px;
+    background-size: contain; /* image shrinks to fit mobile */
+  }
+}
+</style>
 <main id="main-content" class="frontpage">
 
     <!-- Slider -->
@@ -50,7 +75,7 @@ get_header();
 
     <!-- Shipping Banner -->
     <section class="shipping-banner">
-        <p>Ã° Free Shipping on Orders Over Ã¢¦50,000</p>
+        <p>Free Shipping on Orders Over Ã¢¦50,000</p>
     </section>
 
     <!-- Community (Blog Posts) -->
