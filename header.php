@@ -1,83 +1,62 @@
-<!doctype html>
-<html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo('charset'); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<?php wp_head(); ?>
-<style>
-  /* Hide search on mobile */
-  @media (max-width: 768px) {
-    .desktop-only {
-      display: none !important;
-    }
-  }
-
-  .logo img {
-    max-height: 40px;
-    width: auto;
-    vertical-align: middle;
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* small space between hamburger and logo */
-  }
-</style>
-</head>
-<body <?php body_class(); ?>>
-<header class="site-header">
-  <div class="header-inner">
-    
-    <!-- Left side: Hamburger + Logo -->
-    <div class="header-left">
-      <button class="icon-btn hamburger" id="hamburgerBtn" aria-label="Open menu">
-        <!-- simple hamburger -->
-        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect y="0" width="20" height="2" rx="1" fill="currentColor"/>
-          <rect y="6" width="20" height="2" rx="1" fill="currentColor"/>
-          <rect y="12" width="20" height="2" rx="1" fill="currentColor"/>
-        </svg>
-      </button>
-
-      <div class="logo">
-        <a href="<?php echo esc_url(home_url('/')); ?>">
-          <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dark-logo.png" alt="Pridama Logo">
-        </a>
+<footer class="site-footer">
+  <!-- Upper Footer -->
+  <div class="footer-top">
+    <div class="footer-grid">
+      
+      <!-- Logo -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <a href="<?php echo esc_url(home_url('/')); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/dark-logo.png" alt="Pridama Logo">
+          </a>
+        </div>
       </div>
-    </div>
 
-    <div class="header-right">
-      <form role="search" method="get" class="search-form desktop-only" action="<?php echo esc_url(home_url('/')); ?>">
-        <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
-        <input type="hidden" name="post_type" value="product" />
-        <button class="icon-btn" type="submit" aria-label="Search">🔍</button>
-      </form>
-
-      <div class="mini-cart" id="miniCart">
-        <a href="<?php echo wc_get_cart_url(); ?>" class="icon-btn" aria-label="View cart">
-          🛒
-          <span class="cart-count" id="cartCount"><?php echo (int)(function_exists('WC')? WC()->cart->get_cart_contents_count():0); ?></span>
-        </a>
+      <!-- Primary Menu -->
+      <div class="footer-col">
+        <nav class="footer-menu">
+          <?php
+            if ( has_nav_menu('primary') ){
+              wp_nav_menu(array(
+                'theme_location'=>'primary',
+                'container'=>false,
+                'menu_class'=>'footer-nav'
+              ));
+            }
+          ?>
+        </nav>
       </div>
+
+      <!-- Account + Cart Links -->
+      <div class="footer-col">
+        <div class="footer-links">
+          <a href="<?php echo esc_url(get_permalink( get_option('woocommerce_myaccount_page_id') )); ?>">My Account</a>
+          <a href="<?php echo esc_url(wc_get_cart_url()); ?>">
+            Cart (<?php echo (int)(function_exists('WC')? WC()->cart->get_cart_contents_count():0); ?>)
+          </a>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="footer-col">
+        <div class="footer-search">
+          <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+            <input type="search" name="s" placeholder="Search products..." value="<?php echo get_search_query(); ?>">
+            <input type="hidden" name="post_type" value="product" />
+            <button type="submit" aria-label="Search">Search</button>
+          </form>
+        </div>
+      </div>
+
     </div>
-
   </div>
-</header>
 
-<!-- Drawer -->
-<div class="drawer" id="mobileDrawer" aria-hidden="true">
-  <div class="drawer-content">
-    <?php
-      if ( has_nav_menu('primary') ){
-        wp_nav_menu(array('theme_location'=>'primary','container'=>false));
-      } else {
-        echo '<p><a href="'.esc_url(home_url('/')).'">Home</a></p>';
-      }
-    ?>
+  <!-- Lower Footer -->
+  <div class="footer-bottom">
+    <p>© <?php echo date('Y'); ?> pridama.com. All Rights Reserved.</p>
   </div>
-  <div class="drawer-footer">© <?php echo date('Y'); ?> pridama.com</div>
-</div>
-<div class="overlay" id="drawerOverlay"></div>
+</footer>
 
-<main class="main" id="site-main">
+<?php wp_footer(); ?>
+</body>
+</html>
