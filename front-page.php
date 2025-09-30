@@ -75,7 +75,7 @@ get_header();
 
     <!-- Shipping Banner -->
     <section class="shipping-banner">
-        <p>Free Shipping on Orders Over Ã¢¦50,000</p>
+    
     </section>
 
     <!-- Community (Blog Posts) -->
